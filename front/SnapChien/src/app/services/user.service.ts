@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -7,17 +7,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:8080/photos/';
+
 
   constructor(private http: HttpClient) { }
 
-  upload(file: File): Observable<HttpEvent<any>> {
+  upload(file: File, comment: string): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
     formData.append('file', file);
+    formData.append('comment', comment);
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
-      reportProgress: true,
+    const req = new HttpRequest('POST', `${this.baseUrl}upload`, formData, {
       responseType: 'json'
     });
 
@@ -25,6 +26,22 @@ export class UserService {
   }
 
   getFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/files`);
+    return this.http.get(`${this.baseUrl}`);
   }
+
+  delete(image_id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}`+image_id, { responseType: 'json' });
+  }
+
+  update(image_id: number, comment: string): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('comment', comment);
+
+    const req = new HttpRequest('PATCH', `${this.baseUrl}`+image_id, formData, {
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
+  }
+
 }

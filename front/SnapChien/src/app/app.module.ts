@@ -16,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     UploadImagesComponent,
   ],
   imports: [
+    MatExpansionModule,
+    FormsModule,
+    FlexLayoutModule,
     HttpClientModule,
     MatExpansionModule,
     MatSidenavModule,
