@@ -1,0 +1,96 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" >
+<mat-card style="max-width: 90%; margin: 0 auto;">
+<!-- <div *ngFor="let progressInfo of progressInfos">
+    <span>{{ progressInfo.fileName }}</span>
+    <mat-toolbar class="progress-bar">
+      <mat-progress-bar
+        color="accent"
+        [value]="progressInfo.value"
+      ></mat-progress-bar>
+      <span class="progress">{{ progressInfo.value }}%</span>
+    </mat-toolbar>
+  </div> -->
+  <mat-form-field>
+    <div>
+      <mat-toolbar>
+        <input matInput #inputfiles [value]="selectedFileNames.length ? selectedFileNames : 'Select Images'" />
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!selectedFiles"
+          (click)="uploadFiles(); "
+        >
+          Upload
+        </button>
+      </mat-toolbar>
+      <input
+        type="file"
+        id="fileInput"
+        name="fileInput"
+        accept="image/*" multiple
+        (change)="selectFiles($event)"
+      />
+    </div>
+  </mat-form-field>
+  <div fxLayout="row wrap center" fxLayoutGap="20px">
+    <mat-card class="preview-card" style="margin:10px"  *ngFor="let preview of previews;let i=index">
+      <div fxLayout="column" fxLayoutAlign="space-around center" >
+        <p >{{previewsFileNames[i]}} </p>
+        <img [src]="preview" class="preview">
+          <mat-form-field class="example-full-width" appearance="fill">
+             <mat-label>Comment</mat-label>
+            <input matInput #message [(ngModel)]="comments[i]" maxlength="100" placeholder="Picture's comment">
+          </mat-form-field>
+      </div>
+      </mat-card>
+  </div>
+  <div *ngIf="message.length" class="message">
+    <ul *ngFor="let msg of message; let i = index">
+      <li>{{ msg }}</li>
+    </ul>
+  </div>
+  <h2>Images list </h2>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Click to access list of Images
+        </mat-panel-title>
+        <mat-panel-description>
+          You can update comments and delete uploaded Images
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  <div fxLayout="row wrap center layout-wrap" fxLayoutGap="20px" >
+    <mat-card class="preview-card" style="margin:10px"  *ngFor="let image of imageInfos | async" class="list-item">
+      <div fxLayout="column" fxLayoutAlign="space-evenly stretch" >
+        <mat-label><strong>Title : </strong></mat-label><p style="max-width:150px"><a href="{{ image.url }}">{{ image.name }}</a> </p>
+        <img class="preview" src="{{ image.url }}" alt="{{ image.name }}">
+        <mat-label><strong>Comment : </strong></mat-label> <p style="max-width:150px">{{image.comment}}</p>
+        <button
+          mat-flat-button
+          color="warn"
+          (click)="delete(image.id)"
+        >
+          Delete Image
+        </button>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>New Comment</mat-label>
+         <input matInput #comment [value]="image.comment" maxlength="100">
+       </mat-form-field>
+        <button
+          mat-flat-button
+          color="accent"
+          (click)="updateComment(image.id,comment.value)"
+        >
+          Update Comment
+        </button>
+      </div>
+      </mat-card>
+  </div>
+</mat-expansion-panel>
+</mat-accordion>
+</mat-card>
+</div>
+
+

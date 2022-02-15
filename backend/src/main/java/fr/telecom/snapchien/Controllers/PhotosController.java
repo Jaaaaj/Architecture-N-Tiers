@@ -36,7 +36,7 @@ import fr.telecom.snapchien.Repositories.PhotosRepository;
 @Controller
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/photos")
-public class PhotosController {
+public class  PhotosController {
 
 	@Autowired
 	private PhotosRepository photosRepo;
