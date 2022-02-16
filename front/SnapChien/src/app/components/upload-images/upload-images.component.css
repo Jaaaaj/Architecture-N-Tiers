@@ -66,3 +66,26 @@ mat-card img {
   width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
   height: 80%;
 }
+
+.card-deck-container {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  border-radius: 2px;
+  padding: 10px 10px 30px;
+  margin: 10px 10px 10px 10px;
+  background-color: #f5f5f5;
+}
+
+.card-item {
+  padding: 3px 3px 3px 3px;
+}
+
+#container-div {
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+}
