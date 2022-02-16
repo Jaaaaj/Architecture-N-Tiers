@@ -18,11 +18,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
+import { CarousselComponent } from './components/caroussel/caroussel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadImagesComponent,
+    CarousselComponent,
   ],
   imports: [
     MatExpansionModule,
