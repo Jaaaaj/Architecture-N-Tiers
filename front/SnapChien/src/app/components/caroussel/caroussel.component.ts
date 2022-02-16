@@ -1,4 +1,7 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-caroussel',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarousselComponent implements OnInit {
 
-  constructor() { }
+  constructor(private uploadService: UserService) { }
+
+  imageInfos?: Observable<any>;
 
   ngOnInit(): void {
+    this.imageInfos = this.uploadService.getFiles();
   }
+    
 
 }
