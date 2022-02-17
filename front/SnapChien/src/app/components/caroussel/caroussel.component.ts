@@ -18,5 +18,4 @@ export class CarousselComponent implements OnInit {
     this.imageInfos = this.uploadService.getFiles();
   }
     
-
 }

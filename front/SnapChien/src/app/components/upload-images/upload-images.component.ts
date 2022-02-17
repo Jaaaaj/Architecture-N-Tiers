@@ -23,9 +23,18 @@ export class UploadImagesComponent implements OnInit {
   previewsFileNames: string[] = [];
   imageInfos?: Observable<any>;
 
+  imageData: any[] = [];
+
+  searchFilter: any;
+
   newcomment: string = "";
   ngOnInit(): void {
     this.imageInfos = this.uploadService.getFiles();
+    this.uploadService.getFiles().subscribe(data=> {// GET: list des photos
+      for (let i = 0; i < data.length; i++) {
+        this.imageData = [...this.imageData, {id:data[i].id,url:data[i].url,name:data[i].name,comment:data[i].comment}];
+      }
+    })
   }
 
   selectFiles(event: any): void {

@@ -1,11 +1,13 @@
-<ngb-carousel>
-    <ng-template ngbSlide *ngFor="let image of imageInfos | async">
-      <div class="picsum-img-wrapper" class="d-flex justify-content-center">
-        <img [src]="image.url">
-      </div>
-      <div class="carousel-caption">
-          <hr>
-        <h3> {{ image.comment }} </h3>
-      </div>
-    </ng-template>
-</ngb-carousel>
+<div>
+  <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let image of imageInfos | async">
+          <div class="picsum-img-wrapper" class="d-flex justify-content-center">
+            <img [src]="image.url">
+          </div>
+          <div class="carousel-caption">
+            <hr>
+            <h3> {{ image.comment }} </h3>
+          </div>
+      </ng-template>
+  </ngb-carousel>
+</div>

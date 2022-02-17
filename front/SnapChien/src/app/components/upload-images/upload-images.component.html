@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" >
-  <mat-card style="max-width: 90%; margin: 0 auto;">
+  <mat-card style="width: 90%; margin: 0 auto;">
     <mat-form-field>
       <div>
         <mat-toolbar>
@@ -23,12 +23,12 @@
       </div>
     </mat-form-field>
     <div fxLayout="row wrap center" fxLayoutGap="20px">
-      <mat-card class="preview-card" style="margin:10px"  *ngFor="let preview of previews;let i=index">
+      <mat-card class="preview-card" style="margin:10px" *ngFor="let preview of previews;let i=index">
         <div fxLayout="column" fxLayoutAlign="space-around center" >
           <p >{{previewsFileNames[i]}} </p>
           <img [src]="preview" class="preview">
             <mat-form-field class="example-full-width" appearance="fill">
-               <mat-label>Comment</mat-label>
+              <mat-label>Comment</mat-label>
               <input matInput #message [(ngModel)]="comments[i]" maxlength="100" placeholder="Picture's comment">
             </mat-form-field>
         </div>
@@ -45,37 +45,42 @@
             You can update comments and delete uploaded Images
           </mat-panel-description>
         </mat-expansion-panel-header>
-    <div id="container-div" fxLayout="row wrap center layout-wrap" fxLayoutGap="20px" >
-      <mat-card class="preview-card" style="margin:10px"  *ngFor="let image of imageInfos | async" class="list-item">
-        <div fxLayout="column" fxLayoutAlign="space-evenly stretch" >
-          <mat-label><strong>Title : </strong></mat-label><p style="max-width:150px"><a href="{{ image.url }}">{{ image.name }}</a> </p>
-          <img class="preview" src="{{ image.url }}" alt="{{ image.name }}">
-          <mat-label><strong>Comment : </strong></mat-label> <p style="max-width:150px">{{image.comment}}</p>
-          <button
-            mat-flat-button
-            color="warn"
-            (click)="delete(image.id)"
-          >
-            Delete Image
-          </button>
-          <br>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>New Comment</mat-label>
-           <input matInput #comment [value]="image.comment" maxlength="100">
-         </mat-form-field>
-          <button
-            mat-flat-button
-            color="accent"
-            (click)="updateComment(image.id,comment.value)"
-          >
-            Update Comment
-          </button>
+        <input class="form-control" type="text" placeholder="Rechercher dans les commentaires" [(ngModel)]="searchFilter" />
+        <br>
+        <div id="container-div" fxLayout="row wrap center" fxLayoutGap="20px" *ngFor="let image of imageData" class="list-item">
+          
+          <mat-card class="preview-card" style="margin:10px" *ngIf="image.comment.includes(searchFilter)" >
+            
+              <div fxLayout="column" fxLayoutAlign="space-around center" >
+                <mat-label><strong>Title : </strong></mat-label><p style="max-width:150px"><a href="{{ image.url }}">{{ image.name }}</a> </p>
+                <img class="preview" src="{{ image.url }}" alt="{{ image.name }}">
+                <mat-label><strong>Comment : </strong></mat-label> <p style="max-width:150px">{{image.comment}}</p>
+                <button
+                  mat-flat-button
+                  color="warn"
+                  (click)="delete(image.id)"
+                >
+                  Delete Image
+                </button>
+                <br>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>New Comment</mat-label>
+                  <input matInput #comment [value]="image.comment" maxlength="100">
+                </mat-form-field>
+                <button
+                  mat-flat-button
+                  color="accent"
+                  (click)="updateComment(image.id,comment.value)"
+                >
+                  Update Comment
+                </button>
+              </div>
+      
+          </mat-card>
         </div>
-        </mat-card>
-    </div>
-  </mat-expansion-panel>
-  </mat-accordion>
+      </mat-expansion-panel>
+    </mat-accordion>
   </mat-card>
-  </div>
+</div>
 
 
