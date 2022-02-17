@@ -22,18 +22,21 @@
         />
       </div>
     </mat-form-field>
-    <div fxLayout="row wrap center" fxLayoutGap="20px">
-      <mat-card class="preview-card" style="margin:10px" *ngFor="let preview of previews;let i=index">
-        <div fxLayout="column" fxLayoutAlign="space-around center" >
-          <p >{{previewsFileNames[i]}} </p>
-          <img [src]="preview" class="preview">
+    <div id="container-div" fxLayout="row wrap center" fxLayoutGap="20px" *ngFor="let preview of previews;let i=index" class="list-item">
+      <mat-card class="preview-card" style="margin:10px">
+          <div fxLayout="column" fxLayoutAlign="space-around center" >
+            <mat-label><strong>File name : </strong></mat-label><p >{{previewsFileNames[i]}} </p>
+            <img [src]="preview" class="preview">
+            <br>
             <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Comment</mat-label>
+              <mat-label>New Comment</mat-label>
               <input matInput #message [(ngModel)]="comments[i]" maxlength="100" placeholder="Picture's comment">
             </mat-form-field>
-        </div>
-        </mat-card>
+            <br>
+          </div>
+      </mat-card>
     </div>
+  
     <h2>Images list </h2>
     <mat-accordion>
       <mat-expansion-panel hideToggle>

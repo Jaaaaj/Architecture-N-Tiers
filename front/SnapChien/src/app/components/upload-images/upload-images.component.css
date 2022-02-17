@@ -89,3 +89,7 @@ mat-card img {
   justify-content: center;
   align-items: flex-end;
 }
+
+a{
+  word-break: break-all;
+}

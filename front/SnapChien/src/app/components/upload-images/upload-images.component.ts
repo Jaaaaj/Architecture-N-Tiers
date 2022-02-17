@@ -25,7 +25,7 @@ export class UploadImagesComponent implements OnInit {
 
   imageData: any[] = [];
 
-  searchFilter: any;
+  searchFilter: any ="";
 
   newcomment: string = "";
   ngOnInit(): void {
