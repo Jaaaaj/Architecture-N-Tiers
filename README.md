@@ -13,6 +13,10 @@ commentaire
 moment sur la meme url (si un des clients passe à la photo suivante, tous les autres clients 
 connecté voient aussi la photo suivante)
 
+
+## Démonstration de l'application
+[![Watch the video](https://i.imgur.com/ZgNeW3n.png)](https://youtu.be/a-VA7Boe5BE)
+
 ## Groupe
 
 👤 Amine BOUZID  
